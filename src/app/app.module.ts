@@ -13,7 +13,8 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 // import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
 
-
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MaterialModule} from './material.module';
 
 import { AppComponent } from './app.component';
 import { HelloComponent } from './hello.component';
@@ -30,7 +31,7 @@ import { DashboardPacienteComponent } from './dashboard-paciente/dashboard-pacie
 
 
 @NgModule({
-  imports:      [ BrowserModule, FormsModule, AppRoutingModule, 
+  imports:      [ BrowserModule, FormsModule, AppRoutingModule, MaterialModule,
                   AngularFireModule.initializeApp(environment.firebase),
                   AngularFireDatabaseModule ],
   declarations: [ AppComponent, HelloComponent, PacientesComponent, 
