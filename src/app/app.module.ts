@@ -36,14 +36,6 @@ import { DashboardPacienteComponent } from './dashboard-paciente/dashboard-pacie
                   AngularFireDatabaseModule ],
   declarations: [ AppComponent, HelloComponent, PacientesComponent, 
                   PacienteDetailComponent, MessagesComponent, DashboardPacienteComponent],
-                 // providers: [AngularFirestore],
-  
-
-  /*declarations: [ AppComponent, HelloComponent, HeroesComponent, 
-                  HeroDetailComponent, MessagesComponent, DashboardComponent, PacientesComponent, PacienteDetailComponent, DashboardPacienteComponent],
-                 // providers: [AngularFirestore], */
-  
-  
   
   bootstrap:    [ AppComponent ]
 })
