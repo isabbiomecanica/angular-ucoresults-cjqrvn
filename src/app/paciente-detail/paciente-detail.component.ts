@@ -42,7 +42,7 @@ goBack(): void {
 download(): void {
   //this.ref = this.afStorage.ref(id);
   const id = +this.route.snapshot.paramMap.get('id');
-  alert(this.pacienteService.getPaciente(id));
+  console.log(this.pacienteService.getPaciente(id).subscribe(paciente => this.paciente = paciente.name));
 }
 
 }

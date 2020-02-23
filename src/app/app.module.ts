@@ -36,7 +36,7 @@ import {PostDialogComponent} from './post-dialog/post-dialog.component';
   imports:      [ BrowserModule, FormsModule, AppRoutingModule, MaterialModule,
                   FlexLayoutModule,AppRouters,FormsModule, 
                   AngularFireModule.initializeApp(environment.firebase),
-                  AngularFireDatabaseModule ],
+                  AngularFireDatabaseModule, AngularFireStorageModule ],
   declarations: [ AppComponent, HelloComponent, PacientesComponent,  
                   PacienteDetailComponent, MessagesComponent, DashboardPacienteComponent, WelcomeComponent, PostDialogComponent, DashboardComponent],
   providers: [DataService],
