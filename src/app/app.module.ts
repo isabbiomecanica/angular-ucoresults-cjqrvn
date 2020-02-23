@@ -21,12 +21,16 @@ import { PacientesComponent } from './pacientes/pacientes.component';
 import { PacienteDetailComponent } from './paciente-detail/paciente-detail.component';
 import { DashboardPacienteComponent } from './dashboard-paciente/dashboard-paciente.component';
 
+import {AppRouters} from './app.routes';
+import {WelcomeComponent} from './welcome/welcome.component';
+import {DashboardComponent} from './dashboard/dashboard.component';
+
 
 @NgModule({
-  imports:      [ BrowserModule, FormsModule, AppRoutingModule, MaterialModule, FlexLayoutModule,
+  imports:      [ BrowserModule, FormsModule, AppRoutingModule, MaterialModule, FlexLayoutModule,AppRouters,
                   AngularFireModule.initializeApp(environment.firebase),
                   AngularFireDatabaseModule ],
-  declarations: [ AppComponent, HelloComponent, PacientesComponent, 
+  declarations: [ AppComponent, HelloComponent, PacientesComponent,  
                   PacienteDetailComponent, MessagesComponent, DashboardPacienteComponent],
   
   bootstrap:    [ AppComponent ]
