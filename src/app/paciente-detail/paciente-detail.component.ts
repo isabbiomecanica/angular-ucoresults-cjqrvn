@@ -7,6 +7,9 @@ import { Location } from '@angular/common';
 
 import { PacienteService }  from '../paciente.service';
 
+import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from 'angularfire2/storage';
+import 'firebase/firestore';
+
 @Component({
   selector: 'app-paciente-detail',
   templateUrl: './paciente-detail.component.html',
@@ -15,8 +18,9 @@ import { PacienteService }  from '../paciente.service';
 export class PacienteDetailComponent implements OnInit {
 
   @Input() paciente: Paciente;
+  ref: AngularFireStorageReference;
   
- constructor(
+ constructor(private afStorage: AngularFireStorage,
   private route: ActivatedRoute,
   private pacienteService: PacienteService,
   private location: Location
@@ -33,6 +37,12 @@ getPaciente(): void {
 
 goBack(): void {
   this.location.back();
+}
+
+download(): void {
+  //this.ref = this.afStorage.ref(id);
+  const id = +this.route.snapshot.paramMap.get('id');
+  alert(this.pacienteService.getPaciente(id));
 }
 
 }
