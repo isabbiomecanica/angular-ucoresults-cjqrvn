@@ -5,7 +5,7 @@ import {DataSource} from '@angular/cdk/table';
 import {Observable} from 'rxjs/Observable';
 
 import {PostDialogComponent} from '../post-dialog/post-dialog.component';
-import {MatDialog} from '@angular/material';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-dashboard',
@@ -28,7 +28,7 @@ constructor(public dialog: MatDialog, private dataService: DataService) {
     // } else {
     //  alert('Login in Before');
     }
-    openDialog(): void {
+  openDialog(): void {
     let dialogRef = this.dialog.open(PostDialogComponent, {
       width: '600px',
       data: 'Add Post'
