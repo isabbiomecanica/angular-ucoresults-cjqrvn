@@ -48,6 +48,10 @@ download(): void {
   const fichero = "/usuarios/"+this.paciente.name+"/"+this.paciente.name+".JSON"
   console.log(fichero);
   this.ref = this.afStorage.ref(fichero);
+  this.ref.getDownloadURL();
+  //this.afStorage.getDownloadURL().then(function(url) {
+  //console.log(url);
+});
 }
 
 }
