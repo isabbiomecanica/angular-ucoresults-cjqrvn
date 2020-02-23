@@ -25,6 +25,8 @@ import {AppRouters} from './app.routes';
 import {WelcomeComponent} from './welcome/welcome.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 
+import {DataService} from './data/data.service';
+
 
 @NgModule({
   imports:      [ BrowserModule, FormsModule, AppRoutingModule, MaterialModule, FlexLayoutModule,AppRouters,
@@ -32,7 +34,7 @@ import {DashboardComponent} from './dashboard/dashboard.component';
                   AngularFireDatabaseModule ],
   declarations: [ AppComponent, HelloComponent, PacientesComponent,  
                   PacienteDetailComponent, MessagesComponent, DashboardPacienteComponent, WelcomeComponent, DashboardComponent],
-  
+  providers: [DataService],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }
