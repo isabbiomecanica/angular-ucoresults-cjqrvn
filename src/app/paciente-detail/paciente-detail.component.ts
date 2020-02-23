@@ -8,6 +8,7 @@ import { Location } from '@angular/common';
 import { PacienteService }  from '../paciente.service';
 
 import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from 'angularfire2/storage';
+
 import 'firebase/firestore';
 
 @Component({
@@ -44,7 +45,9 @@ download(): void {
   const id = +this.route.snapshot.paramMap.get('id');
   this.pacienteService.getPaciente(id)
     .subscribe(paciente => this.paciente = paciente);
-  console.log(this.paciente.name);
+  const fichero = "/usuarios/"+this.paciente.name+"/"+this.paciente.name+".JSON"
+  console.log(fichero);
+  this.ref = this.afStorage.ref(fichero);
 }
 
 }
