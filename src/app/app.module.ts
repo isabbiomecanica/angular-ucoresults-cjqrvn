@@ -31,7 +31,7 @@ import {DashboardComponent} from './dashboard/dashboard.component';
                   AngularFireModule.initializeApp(environment.firebase),
                   AngularFireDatabaseModule ],
   declarations: [ AppComponent, HelloComponent, PacientesComponent,  
-                  PacienteDetailComponent, MessagesComponent, DashboardPacienteComponent],
+                  PacienteDetailComponent, MessagesComponent, DashboardPacienteComponent, WelcomeComponent, DashboardComponent],
   
   bootstrap:    [ AppComponent ]
 })
