@@ -39,8 +39,11 @@ ngOnInit(): void {
 }
 getPaciente(): void {
   const id = +this.route.snapshot.paramMap.get('id');
+  console.log('Paciente');
+  console.log(id);
   this.pacienteService.getPaciente(id)
     .subscribe(paciente => this.paciente = paciente);
+    console.log(this.paciente);
 }
 
 goBack(): void {
