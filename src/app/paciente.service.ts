@@ -23,7 +23,7 @@ import { throwError } from 'rxjs';
 
 import { UTPatient } from '../clases/UTPatient.ts';
 
-// export const PACIENTES: Paciente[] = [
+
 export const PACIENTES: Paciente[] = [
   { id: 11, name: 'Dr Nice' },
   { id: 12, name: 'Narco' },
@@ -46,14 +46,13 @@ export class PacienteService {
 
   items: Observable<any[]>;
   itemsRef: AngularFireList<any>;
-  items: Observable<any[]>;
-
-   Dato : Paciente[] = [];
+  Dato : Paciente[] = [];
 
   constructor(private messageService: MessageService, public afd: AngularFireDatabase, private http: HttpClient) {
+    
    }
 
-  getPacientes(public afd: AngularFireDatabase): Observable<Paciente[]> {
+  getPacientes(): Observable<Paciente[]> {
     // TODO: send the message _after_ fetching the heroes
     this.messageService.add('PacienteService: fetched pacientes');
     //return of(PACIENTES);
@@ -79,7 +78,6 @@ export class PacienteService {
   getPaciente(id: number): Observable<Paciente> {
   // TODO: send the message _after_ fetching the hero
   this.messageService.add(`PacienteService: fetched paciente id=${id}`);
-  console.log(this.Dato);
   //return of(PACIENTES.find(paciente => paciente.id === id));
   return of(this.Dato.find(paciente => paciente.id === id));
   }

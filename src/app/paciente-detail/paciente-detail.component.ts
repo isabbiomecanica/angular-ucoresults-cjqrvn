@@ -18,7 +18,7 @@ import 'firebase/firestore';
   selector: 'app-paciente-detail',
   templateUrl: './paciente-detail.component.html',
   styleUrls: ['./paciente-detail.component.css'],
-  providers: [ PacienteService ]
+  // providers: [ PacienteService ]
   
 })
 export class PacienteDetailComponent implements OnInit {
@@ -41,6 +41,7 @@ getPaciente(): void {
   const id = +this.route.snapshot.paramMap.get('id');
   console.log('Paciente');
   console.log(id);
+  console.log(this.pacienteService.Dato.length);
   this.pacienteService.getPaciente(id)
     .subscribe(paciente => this.paciente = paciente);
     console.log(this.paciente);
