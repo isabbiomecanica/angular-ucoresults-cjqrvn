@@ -9,6 +9,11 @@ import { PacienteService }  from '../paciente.service';
 
 import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from 'angularfire2/storage';
 
+import { HttpClient } from '@angular/common/http';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+
+import { UDTPatient } from '../clases/UDTPatient.ts'
+
 import 'firebase/firestore';
 
 @Component({
@@ -61,22 +66,13 @@ download(): void {
          console.log(laURL);
          // descarga(laURL,this.paciente.name+".json");
          window.open(laURL);
+         this._http.get
      }});
 
   // window.navigator.msSaveBlob()
 
 }
 
-descarga(url, filename): void {
-fetch(url).then(function(t) {
-    return t.blob().then((b)=>{
-        var a = document.createElement("a");
-        a.href = URL.createObjectURL(b);
-        a.setAttribute("download", filename);
-        a.click();
-    }
-    );
-});
-}
+
 
 }
