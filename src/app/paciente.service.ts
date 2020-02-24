@@ -79,6 +79,7 @@ export class PacienteService {
   getPaciente(id: number): Observable<Paciente> {
   // TODO: send the message _after_ fetching the hero
   this.messageService.add(`PacienteService: fetched paciente id=${id}`);
+  console.log(id);
   //return of(PACIENTES.find(paciente => paciente.id === id));
   return of(this.Dato.find(paciente => paciente.id === id));
   }
