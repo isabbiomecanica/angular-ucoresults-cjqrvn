@@ -53,7 +53,7 @@ goBack(): void {
 
 download(): void {
   //this.ref = this.afStorage.ref(id);
-  const laURL: string;
+  let laURL: string;
   const id = +this.route.snapshot.paramMap.get('id');
   this.pacienteService.getPaciente(id)
     .subscribe(paciente => this.paciente = paciente);
@@ -64,13 +64,13 @@ download(): void {
   console.log(this.profileUrl)
   this.profileUrl.subscribe(url=>{
      if(url){
-         
+         console.log("entro");
          laURL=url;
          console.log(laURL);
          // descarga(laURL,this.paciente.name+".json");
          window.open(laURL);
-         
-         console.log(this.pacienteService.getPaciente(laURL));
+         const elPaciente: UTPatient = this.pacienteService.getUTPatient(laURL);
+         console.log(elPaciente);
          
          //.subscribe(
          //  (data: UTPaciente) => this.config = { ...data }, // success path
