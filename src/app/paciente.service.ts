@@ -15,6 +15,14 @@ import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import 'rxjs/add/operator/map';
 import 'firebase/firestore';
 
+
+import { HttpClient } from '@angular/common/http';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { catchError, retry } from 'rxjs/operators';
+import { throwError } from 'rxjs';
+
+import { UTPatient } from '../clases/UTPatient.ts';
+
 // export const PACIENTES: Paciente[] = [
 export const PACIENTES: Paciente[] = [
   { id: 11, name: 'Dr Nice' },
@@ -42,40 +50,7 @@ export class PacienteService {
 
    Dato : Paciente[] = [];
 
-  constructor(private messageService: MessageService, public afd: AngularFireDatabase) {
-   // this.itemsRef = afd.list('Usuarios');
-    // Use snapshotChanges().map() to store the key
-   // console.log("Listado");
-   // this.itemsRef=this.afd.list('/Usuarios');
-
-    // Llamamos los datos desde Firebase e iteramos los datos con data.ForEach y por
-    // último pasamos los datos a JSON
-    
-    /*
-    this.itemsRef.snapshotChanges().subscribe(data => { 
-      this.Dato = [];
-      //console.log("-Dato-");
-      //console.log(data.length);
-      data.forEach(item => {
-        let tempPaciente : Paciente = {id: 1,name: "Vacio"};
-        // console.log("-Dato-2");
-        tempPaciente.id = 1;
-        tempPaciente.name = item.payload;
-        //let a = item.payload.toJSON(); 
-        //a['$key'] = item.key;
-        this.Dato.push(tempPaciente as Paciente);
-       // console.log(tempPaciente);
-       // console.log(this.Dato.length);
-      })
-      console.log(this.Dato.length);
-    })
-
-    
-   //console.log(this.Dato.length);
-*/
-      
-
-
+  constructor(private messageService: MessageService, public afd: AngularFireDatabase, private http: HttpClient) {
    }
 
   getPacientes(public afd: AngularFireDatabase): Observable<Paciente[]> {
@@ -87,7 +62,7 @@ export class PacienteService {
     this.itemsRef=this.afd.list('/Usuarios');
     this.itemsRef.snapshotChanges().subscribe(data => { 
       this.Dato = [];
-      var contador:integer = 0;
+      var contador: number = 0;
       data.forEach(item => {
         let tempPaciente : Paciente = {id: 1,name: "Vacio"};
         contador = contador + 1;
@@ -108,5 +83,27 @@ export class PacienteService {
   return of(this.Dato.find(paciente => paciente.id === id));
   }
 
+  getUDTPatient(PatientURL: string) {
+    return this.http.get<UTPatient>(PatientURL)
+      .pipe(
+        retry(3), // retry a failed request up to 3 times
+        catchError(this.handleError) // then handle the error
+      );
+  }
+  private handleError(error: HttpErrorResponse) {
+    if (error.error instanceof ErrorEvent) {
+      // A client-side or network error occurred. Handle it accordingly.
+      console.error('An error occurred:', error.error.message);
+    } else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong,
+      console.error(
+        `Backend returned code ${error.status}, ` +
+        `body was: ${error.error}`);
+    }
+    // return an observable with a user-facing error message
+    return throwError(
+      'Something bad happened; please try again later.');
+  };
 
 }

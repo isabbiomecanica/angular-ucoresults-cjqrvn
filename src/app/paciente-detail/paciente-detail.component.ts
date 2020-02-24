@@ -6,13 +6,11 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { PacienteService }  from '../paciente.service';
+import { UTPatient } from '../clases/UDTPatient.ts'
 
 import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from 'angularfire2/storage';
 
-import { HttpClient } from '@angular/common/http';
-import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 
-import { UDTPatient } from '../clases/UDTPatient.ts'
 
 import 'firebase/firestore';
 
@@ -20,6 +18,7 @@ import 'firebase/firestore';
   selector: 'app-paciente-detail',
   templateUrl: './paciente-detail.component.html',
   styleUrls: ['./paciente-detail.component.css'],
+  providers: [ PacienteService ]
   
 })
 export class PacienteDetailComponent implements OnInit {
@@ -66,7 +65,15 @@ download(): void {
          console.log(laURL);
          // descarga(laURL,this.paciente.name+".json");
          window.open(laURL);
-         this._http.get
+         
+         console.log(this.pacienteService.getPaciente(laURL));
+         
+         //.subscribe(
+         //  (data: UTPaciente) => this.config = { ...data }, // success path
+         //error => this.error = error // error path
+         //);
+
+
      }});
 
   // window.navigator.msSaveBlob()
