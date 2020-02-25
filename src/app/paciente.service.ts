@@ -85,13 +85,14 @@ export class PacienteService {
   getUTPatient(PatientURL: string): Observable<UTPatient> {
     let elPaciente: UTPatient = [];
     elPaciente.PatientName ="Ejemplo";
-    this.http.get<UTPatient>(PatientURL).subscribe((data: UTPatient) => elPaciente = { ...data })
-      //.pipe(
-      //  retry(3), // retry a failed request up to 3 times
-      //  catchError(this.handleError) // then handle the error
-      //);
-      console.log(elPaciente.PatientName);
-      return elPaciente;
+    console.log(elPaciente.PatientName);
+    //this.http.get<UTPatient>(PatientURL).subscribe((data: UTPatient) => elPaciente = { ...data })
+    return this.http.get<UTPatient>(PatientURL).pipe(
+        retry(3), // retry a failed request up to 3 times
+        catchError(this.handleError) // then handle the error
+      );
+      //console.log(elPaciente.PatientName);
+      //return elPaciente;
   }
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {

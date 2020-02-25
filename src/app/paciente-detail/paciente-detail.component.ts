@@ -6,7 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { PacienteService }  from '../paciente.service';
-import { UTPatient } from '../clases/UDTPatient.ts'
+import { UTPatient } from '../clases/UTPatient.ts'
 
 import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from 'angularfire2/storage';
 
@@ -24,6 +24,7 @@ import 'firebase/firestore';
 export class PacienteDetailComponent implements OnInit {
 
   @Input() paciente: Paciente;
+  @Input() elPaciente: UTPatient;
   ref: AngularFireStorageReference;
   profileUrl: Observable<string | null>;
   
@@ -68,17 +69,17 @@ download(): void {
          laURL=url;
          console.log(laURL);
          // descarga(laURL,this.paciente.name+".json");
-         window.open(laURL);
-         const elPaciente: UTPatient = this.pacienteService.getUTPatient(laURL);
-         console.log(elPaciente);
+         // window.open(laURL);
+         // const elPaciente: UTPatient = this.pacienteService.getUTPatient(laURL);
+         console.log("Llamo");
+         this.pacienteService.getUTPatient(laURL).subscribe(UTPatient => this.elPaciente = UTPatient);
+         console.log(this.elPaciente);
+        }
          
-         //.subscribe(
-         //  (data: UTPaciente) => this.config = { ...data }, // success path
-         //error => this.error = error // error path
-         //);
+         
+        
 
-
-     }});
+     });
 
   // window.navigator.msSaveBlob()
 
